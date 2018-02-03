@@ -20,7 +20,19 @@ app.get('/',function(req,res){
 });
 
 app.use('/login',function(req,res){
+	res.setHeader( "Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");//
+	res.setHeader( "Access-Control-Allow-Origin", "*" ); //可以访问此域资源的域。*为所有
+	// res.setHeader("Access-Control-Allow-Credentials","true");
+	// res.setHeader("Access-Control-Allow-Credentials", "true");
+	res.setHeader( "Access-Control-Allow-Methods", "*" ); //可以访问此域的脚本方法类型
+	res.setHeader( "Access-Control-Max-Age", "1000" ); //
+	res.header("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+
+
 	var sqlString='select * from user where user_name = ?;';
+
+	// req.body=JSON.parse(req.body);
+	console.log(req.body);
 	var user_name=req.body.user_name;
 	var user_pwd=req.body.user_pwd;
 	mysql.query(sqlString,[user_name,user_pwd],function(results){
@@ -42,6 +54,13 @@ app.use('/login',function(req,res){
 });
 
 app.use('/register',function(req,res){
+	res.setHeader( "Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");//
+	res.setHeader( "Access-Control-Allow-Origin", "*" ); //可以访问此域资源的域。*为所有
+	res.setHeader( "Access-Control-Allow-Methods", "POST" ); //可以访问此域的脚本方法类型
+	res.setHeader( "Access-Control-Max-Age", "1000" ); //
+	res.header("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+
+
 	var sqlString='select * from user where user_name = ? ;';
 	var user_id=0;
 	var user_name=req.body.user_name;

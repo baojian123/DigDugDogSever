@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script>
+  function post(){
+      // alert(1);
+      var jso= {
+       user_name: 'aaaa',
+       user_pwd: '1234'
+     };
+        $.ajax({
+            // header:{
+            //   "Access-Control-Allow-Origin": "*",
+            //   // 'Content-Type': 'application/x-www-form-urlencoded'
+            // },
+             url:"http://localhost:3000/login",
+             type:"POST",
+             contentType: "application/json; charset=utf-8",
+             // datatype:'json',
+             data:JSON.stringify(jso),
+             // xhrFields: {
+             //     withCredentials: true
+             // },
+             // crossDomain: true,
+             beforeSend:function(){
+               console.log(this.data);
+             },
+             success: function (message) {
+                 // alert(message);
+             },
+             error: function (message) {
+                 //alert(message);
+             }
+      });
+    }
+  </script>
+  <title>Document</title>
+</head>
+<body>
+  <button class="submit" onclick="post()">提交数据</button>
+</body>
+</html>
